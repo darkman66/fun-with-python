@@ -9,12 +9,15 @@ while a < 10:
 
 # loop
 
+
+## Simple loops
+
 ```
 def hello_world(message):
     print(message)
-	
+
 for x in range(10):
-    hello_world(f"repeat {x}")	
+    hello_world(f"repeat {x}")
 ```
 
 with conditions beings used
@@ -22,7 +25,7 @@ with conditions beings used
 ```
 def hello_world(message):
     print(message)
-	
+
 for x in range(10):
     if x % 2 == 0:
         y = x * 2
