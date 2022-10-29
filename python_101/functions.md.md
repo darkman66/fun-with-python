@@ -64,3 +64,33 @@ value_2 = foo(2, 5, 1, 2 ,3, ignore_arg=123)
 print(value_1)
 print(value_2)
 ```
+
+# scopes
+
+## global
+
+```Python
+# file func1.py
+def foo():
+    SOME_VAR = "x"
+    
+# file func2.py
+SOME_VAR = "abc"
+def foo2():
+    global SOME_VAR
+    print(SOME_VAR)
+    
+# file func3.py
+from func1 import foo
+from func2 import foo2, SOME_VAR
+
+
+def foo3():
+    global SOME_VAR
+    SOME_VAR = "here i am"
+    
+foo2()
+foo3()
+foo2()
+print(SOME_VAR)
+```
