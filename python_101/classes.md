@@ -8,6 +8,7 @@ class Point:
 
 
 ```
+import pickle
 from collections.abc import Callable
 from typing import NewType
 
@@ -41,7 +42,7 @@ class Serializer(object):
         return pickle.dumps(data, self.pickle_protocol)
 
     def _deserialize(self, data: str) -> Callable[[], str]:
-        """Deserialize pickled object to its original state"
+        """Deserialize pickled object to its original state"""
         return pickle.loads(data)
 
     def serialize(self, data: Callable[[], str]):
@@ -53,7 +54,7 @@ class Serializer(object):
                 data = gzip_compress(data, self.comp_level)
         return data
 
-    def deserialize(self, data):
+    def deserialize(self, data: MyObject) -> str:
         if self.comp:
             if not is_compressed(data):
                 logger.warning('compression enabled but message data does not '
@@ -63,5 +64,14 @@ class Serializer(object):
             else:
                 data = gzip_decompress(data)
         return self._deserialize(data)
+```
+
+Usage
+
+```
+data = {"key1": "some value"}
+s = Serializer()
+serialized_data = s.serialize(data)
+s.deserialize(serialized_data)
 ```
 

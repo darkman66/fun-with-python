@@ -48,7 +48,7 @@ foo(2, 5, 1, 2 ,3, ignore_arg=123)
 
 With better and cleaner types definition
 
-```
+```Python
 from typing import List, Dict
 
 
@@ -64,6 +64,36 @@ value_2 = foo(2, 5, 1, 2 ,3, ignore_arg=123)
 print(value_1)
 print(value_2)
 ```
+
+# variables scoping
+
+```Python
+my_variable = "started with value"
+def scoped_function():
+    def run_global():
+        global my_variable
+        my_variable = "global eggs"
+
+    def run_local():
+        my_variable = "i love eggs"
+
+    def run_nonlocal():
+        nonlocal my_variable
+        my_variable = "nonlocal eggs"
+
+    my_variable = "test value"
+    run_local()
+    print(f"After local assignment: {my_variable}")
+    run_nonlocal()
+    print(f"After nonlocal assignment: {my_variable}")
+    run_global()
+    print(f"After global assignment: {my_variable}")
+
+print(f"Started with value: {my_variable}")
+scoped_function()
+print("In global scope:", my_variable)
+```
+
 
 # scopes
 
