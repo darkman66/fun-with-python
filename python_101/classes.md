@@ -208,3 +208,47 @@ Listings proteted arguments
 f = Foo(5,7)
 dir(f)
 ```
+
+## private attributes
+
+```Python
+class Foo:
+
+    def __init__(self, arg1, arg2):
+        self.__argument_1 = arg1
+        self.__argument_2 = arg2
+        self.__print_me()
+
+    def __print_me(self):
+        """Example printing of constructor args"""
+        print(f"argument 1: {self.__argument_1}")
+        print(f"argument 2: {self.__argument_2}")
+```
+
+## destructor
+
+```Python
+class Foo:
+
+    def __init__(self, arg1, arg2):
+        self.__argument_1 = arg1
+        self.__argument_2 = arg2
+        self.__print_me()
+
+    def __print_me(self):
+        """Example printing of constructor args"""
+        print(f"argument 1: {self.__argument_1}")
+        print(f"argument 2: {self.__argument_2}")
+
+    def __del__(self):
+        self.__argument_1 = None
+        self.__argument_2 = None
+        print('bye bye!')
+```
+
+destroy it
+
+```Python
+f = Foo(1, 5)
+del(f)
+```
