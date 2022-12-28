@@ -61,3 +61,88 @@ if [ -n "$FILES_CHANGED" ]; then
     echo $FILES_CHANGED | xargs pylint --rcfile=./config.rc 2>&1
 fi
 ```
+
+With fixed grep version
+
+```bash
+#!/bin/sh
+
+set -e
+
+FILES_CHANGED=$(git diff --name-only --diff-filter=ACM origin/main  | grep -E ".py$" || true
+
+if [ -n "$FILES_CHANGED" ]; then
+    echo $FILES_CHANGED | xargs pylint --rcfile=./config.rc 2>&1
+fi
+```
+
+
+# pre-commit
+
+* config
+
+```yaml
+default_stages: [commit, push]
+repos:
+
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.3.0
+  hooks:
+  - id: trailing-whitespace
+  - id: end-of-file-fixer
+  - id: check-json
+  - id: check-yaml
+  - id: debug-statements
+  - id: check-merge-conflict
+  - id: detect-private-key
+  - id: end-of-file-fixer
+  - id: pretty-format-json
+    args: [--autofix]
+  - id: no-commit-to-branch
+    args: [--branch, master]
+- repo: https://github.com/ambv/black
+  rev: 22.10.0
+  hooks:
+  - id: black
+    args: [--line-length=120]
+- repo: local
+  hooks:
+  - id: pylint
+    name: Pylint
+    stages: [push]
+    description: Run pylint
+    entry: ./config/pylint.sh
+    language: script
+    types: [python]
+    pass_filenames: false
+  - id: flake8
+    name: Check flake8
+    stages: [push]
+    description: RUn flake8
+    entry: ./config/flake8.sh
+    language: script
+    args: [local]
+    types: [python]
+    pass_filenames: false
+
+```
+
+execute pre-commit
+
+```sh
+trim trailing whitespace.................................................Passed
+fix end of files.........................................................Passed
+check json...........................................(no files to check)Skipped
+check yaml...........................................(no files to check)Skipped
+debug statements (python)................................................Passed
+check for merge conflicts................................................Passed
+detect private key.......................................................Passed
+fix end of files.........................................................Passed
+pretty format json...................................(no files to check)Skipped
+don't commit to branch...................................................Passed
+black....................................................................Passed
+Run pylint...............................................................Passed
+Check flake8.............................................................Passed
+[bugfix/some-branch-name ee9cdc99] test commit
+1 file changed, 1 insertion(+)
+```
