@@ -2,6 +2,7 @@
 
 
 ## basic usage
+
 ```Python
 class Point:
     x: int
@@ -55,9 +56,9 @@ p2 = Point()
 p2.x = 10
 p2.y = 5
 
-print(p1 == p2)
-print(isinstance(p1, Point))
-print(isinstance(p2, Point))
+print(p1 == p2)  # False
+print(isinstance(p1, Point))  # True
+print(isinstance(p2, Point))  # True
 
 # clean code
 

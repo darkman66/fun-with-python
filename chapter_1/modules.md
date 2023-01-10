@@ -3,7 +3,7 @@
 ## example structure for package
 
 
-```Python
+```bash
 sound/                          Top-level package
       __init__.py               Initialize the sound package
       formats/                  Subpackage for file format conversions

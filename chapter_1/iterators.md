@@ -2,19 +2,19 @@
 
 Example
 
-```
+```python
 my_numbers = [1, 2, 3, 4, 5]
 data = iter(my_numbers)
-print(next(obj))
-print(next(obj))
-print(next(obj))
-print(next(obj))
-print(next(obj))
+print(next(data))
+print(next(data))
+print(next(data))
+print(next(data))
+print(next(data))
 ```
 
 more complex
 
-```
+```python
 class AsciiIterator:
 
     def __iter__(self):
@@ -39,7 +39,7 @@ for letter in my_iterator:
 
 example
 
-```
+```python
 def my_numbers():
     for i in range(1, 6):
         yield i
@@ -53,7 +53,8 @@ print(next(obj))
 ```
 
 same as iterator
-```
+
+```python
 def ascii_iterator():
     for i in range(65, 91):
         yield chr(i)

@@ -1,6 +1,6 @@
 # bad
 
-```
+```python
 def FoO(ARgINt8):
     myTmpV = ARgINt8 * 20
     return OtherFoO2(myTmpV/2)
@@ -15,7 +15,7 @@ if __name__ == "__main__":
 same as above but good
 
 
-```
+```python
 def simple_calculator(in_multiplier):
     """This is pretty simple function that deliver some math."""
     my_temp_var = in_multiplier * 20

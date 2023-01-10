@@ -1,10 +1,10 @@
 example of bad identation
 
-```
+```python
 import urllib
 from urllib import parse as urlparse
 
-def parse_qsl_to_dict(value): 
+def parse_qsl_to_dict(value):
     """
     Returns a dict from a querystring-encoded string.
     """
@@ -21,5 +21,5 @@ class BasiceService(BaseHTTPRequestHandler):
             return True
         else:
           return False
-        return 1    
+        return 1
 ```

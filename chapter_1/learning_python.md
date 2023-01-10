@@ -1,6 +1,6 @@
 # Fibonacci series
 
-```
+```python
 a, b = 0, 1
 while a < 10:
     print(a)
@@ -12,7 +12,7 @@ while a < 10:
 
 ## Simple loops
 
-```
+```python
 def hello_world(message):
     print(message)
 
@@ -22,7 +22,7 @@ for x in range(10):
 
 with conditions beings used
 
-```
+```python
 def hello_world(message):
     print(message)
 
